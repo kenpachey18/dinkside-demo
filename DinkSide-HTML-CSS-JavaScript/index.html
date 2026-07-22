@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DinkSide Pickleball Court booking demo">
+  <title>DinkSide Pickleball Courts</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top"><img src="assets/dinkside-logo-transparent.webp" alt="DinkSide Pickleball Courts"></a>
+    <nav><button data-scroll="reserve">Book the court</button><button id="show-bookings">My bookings</button></nav>
+    <button class="lime-button" data-scroll="reserve">Find a time ↗</button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <img class="hero-photo" src="assets/dinkside-court.webp" alt="DinkSide pickleball court">
+      <div class="hero-overlay"></div>
+      <div class="hero-copy">
+        <span class="eyebrow">ONE COURT. ALL YOURS.</span>
+        <h1>Your side<br>of the court.</h1>
+        <p>Choose your date, select consecutive hours, submit payment proof, and track your confirmation—all in one place.</p>
+        <button class="lime-button" data-scroll="reserve">Book the court ↗</button>
+      </div>
+      <div class="hero-facts"><span><b>OPERATING HOURS</b>7:00 AM – 3:00 AM</span><span><b>COURT RATE</b><i id="hero-rate">₱350 / hour</i></span></div>
+    </section>
+
+    <section class="booking-section" id="reserve">
+      <div class="section-intro"><div><span class="eyebrow dark">LIVE COURT SCHEDULE</span><h2>Pick your date.<br><em>Tap your hours.</em></h2></div><p>Choose one or more consecutive available hours. Overnight slots are shown after 11:00 PM.</p></div>
+      <div class="booking-layout">
+        <section class="availability-panel">
+          <div class="panel-head"><strong>01 &nbsp; CHOOSE A DATE</strong><div class="legend"><span>● Available</span><span>● Booked</span><span>● Pending</span><span>● Unavailable</span></div></div>
+          <div class="date-row" id="date-row"></div>
+          <div class="calendar-picker"><label>Check another date <input id="date-picker" type="date"></label></div>
+          <div class="slot-heading"><strong>02 &nbsp; SELECT CONSECUTIVE HOURS</strong><span id="schedule-date"></span></div>
+          <p class="next-day-note"><b>Note:</b> Slots from <b>12:00 AM onwards</b> are on the following day.</p>
+          <div id="preserved-note" class="preserved-note hidden"></div>
+          <div class="slot-grid" id="slot-grid"></div>
+        </section>
+
+        <aside class="summary-card">
+          <span>YOUR BOOKING</span><h3 id="summary-title">Choose your hours.</h3>
+          <dl>
+            <div><dt>Date</dt><dd id="summary-date">—</dd></div>
+            <div><dt>Time</dt><dd id="summary-time">No hours selected</dd></div>
+            <div><dt>Court</dt><dd>DinkSide · Court 01</dd></div>
+            <div><dt>Duration</dt><dd id="summary-duration">0 hours</dd></div>
+            <div><dt>Hourly rate</dt><dd id="summary-rate">₱350 / hour</dd></div>
+            <div class="total"><dt>Total</dt><dd id="summary-total">₱0</dd></div>
+          </dl>
+          <button id="continue-booking" class="lime-button full" disabled>Continue ↗</button>
+          <small>Bookings remain pending until payment proof is confirmed.</small>
+        </aside>
+      </div>
+    </section>
+
+    <section class="my-bookings hidden" id="bookings">
+      <span class="eyebrow dark">MANAGE MY BOOKING</span><h2>Find your reservation.</h2><p>Enter the 11-digit mobile number used when the booking was submitted.</p>
+      <form id="lookup-form" class="lookup-card"><label>Mobile number<input id="lookup-mobile" type="tel" inputmode="numeric" maxlength="11" pattern="[0-9]{11}" placeholder="09171234567" required></label><button class="lime-button">Look up ↗</button></form>
+      <p id="lookup-message"></p><div id="lookup-results" class="booking-results"></div>
+    </section>
+  </main>
+
+  <footer><img src="assets/dinkside-logo-transparent.webp" alt="DinkSide"><p>One court. One schedule. Your side of the game.</p><nav><button data-scroll="reserve">Book the court</button><a href="#top">Get directions</a><button id="footer-bookings">My bookings</button><a href="admin.html">Admin</a></nav></footer>
+
+  <div class="modal-backdrop hidden" id="booking-modal">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="close-modal" aria-label="Close">×</button>
+      <div class="steps"><span id="step-1-label">1 Details</span><span id="step-2-label">2 Payment</span><span id="step-3-label">3 Received</span></div>
+      <div id="checkout-content"></div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
